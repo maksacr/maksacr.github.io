@@ -1,6 +1,7 @@
 body {
-    background-color: #1a1a2e;
-    color: #e0e0e0;
+    background: url('images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
     font-family: 'Arial', sans-serif;
     text-align: center;
     margin: 0;
@@ -9,6 +10,10 @@ body {
 
 .container {
     padding: 20px;
+}
+
+h1 {
+    font-size: 2em;
 }
 
 .highlight {
@@ -23,17 +28,14 @@ body {
 }
 
 .card {
-    background: #222;
+    background: rgba(34, 34, 34, 0.8);
     padding: 20px;
     border-radius: 10px;
     width: 300px;
     text-align: center;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-}
-
-.card img {
-    width: 100%;
-    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    color: white;
 }
 
 .btn {
