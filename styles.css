@@ -39,7 +39,7 @@ h1 {
     transition: transform 0.3s ease-in-out; /* Smooth transition */
 }
     
-    .card:hover {
+.card:hover {
         transform: scale(1.05); /* Zoom effect on hover */
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Soft shadow effect */
 }
