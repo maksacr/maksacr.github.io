@@ -1,9 +1,56 @@
+/* Global styles */
 body {
-    font-family: Arial, sans-serif;
+    background: url('images/background.jpg') no-repeat center center scroll;
+    background-size: cover;
+    color: #e0e0e0;
+    font-family: 'Arial', sans-serif;
     text-align: center;
-    margin: 50px;
-    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
-h1 {
-    color: #333;
+
+/* Container styles */
+.container {
+    padding: 20px;
+}
+
+/* Highlight color */
+.highlight {
+    color: #a29bfe;
+}
+
+/* Grid layout */
+.grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Card styles */
+.card {
+    background: rgba(34, 34, 34, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+/* Button styles */
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    margin-top: 10px;
+    background: #a29bfe;
+    color: #222;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background: #6c5ce7;
 }
