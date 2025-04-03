@@ -1,7 +1,7 @@
 body {
     background: url('images/background.jpg') no-repeat center center fixed;
     background-size: cover;
-    color: white;
+    color: rgb(80, 80, 80);
     font-family: 'Arial', sans-serif;
     text-align: center;
     margin: 0;
@@ -17,7 +17,7 @@ h1 {
 }
 
 .highlight {
-    color: #707070;
+    color: #1f1f1f;
 }
 
 .grid {
@@ -36,6 +36,12 @@ h1 {
     background-size: cover;
     background-position: center;
     color: white;
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
+}
+    
+    .card:hover {
+        transform: scale(1.05); /* Zoom effect on hover */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Soft shadow effect */
 }
 
 .btn {
