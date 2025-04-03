@@ -1,7 +1,5 @@
-/* Global styles */
 body {
-    background: url('images/background.jpg') no-repeat center center scroll;
-    background-size: cover;
+    background-color: #1a1a2e;
     color: #e0e0e0;
     font-family: 'Arial', sans-serif;
     text-align: center;
@@ -9,17 +7,14 @@ body {
     padding: 0;
 }
 
-/* Container styles */
 .container {
     padding: 20px;
 }
 
-/* Highlight color */
 .highlight {
     color: #a29bfe;
 }
 
-/* Grid layout */
 .grid {
     display: flex;
     justify-content: center;
@@ -27,20 +22,20 @@ body {
     flex-wrap: wrap;
 }
 
-/* Card styles */
 .card {
-    background: rgba(34, 34, 34, 0.8);
+    background: #222;
     padding: 20px;
     border-radius: 10px;
     width: 300px;
     text-align: center;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    background-size: cover;
-    background-position: center;
-    color: white;
 }
 
-/* Button styles */
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
 .btn {
     display: inline-block;
     padding: 10px 15px;
