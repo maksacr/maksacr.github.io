@@ -154,3 +154,18 @@ h1 {
 .heading-glass:hover {
     box-shadow: 0 0 20px rgba(250, 162, 62, 0.2); /* orange hover glow */
 }
+
+
+@media (max-width: 600px) {
+    .music-player-fixed {
+      left: 0;
+      right: 0;
+      width: 100%;
+      justify-content: center;
+      border-radius: 0;
+    }
+  
+    .heading-glass {
+      margin-top: 60px;
+    }
+}
