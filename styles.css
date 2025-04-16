@@ -124,3 +124,33 @@ h1 {
 .music-player-fixed:hover {
     box-shadow: 0 0 20px rgba(250, 162, 62, 0.2);
 }
+
+
+.welcome-grey {
+    color: #414040;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.maksacr-black {
+    color: #000000;
+    font-weight: 800;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
+}
+
+
+.heading-glass {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    background: rgba(0, 0, 0, 0.2); /* same as music player */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* same glow */
+    transition: all 0.3s ease-in-out;
+}
+
+.heading-glass:hover {
+    box-shadow: 0 0 20px rgba(250, 162, 62, 0.2); /* orange hover glow */
+}
