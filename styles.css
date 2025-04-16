@@ -158,11 +158,9 @@ h1 {
 
 @media (max-width: 600px) {
     .music-player-fixed {
-      left: 0;
-      right: 0;
-      width: 100%;
-      justify-content: center;
-      border-radius: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: max-content;
     }
   
     .heading-glass {
