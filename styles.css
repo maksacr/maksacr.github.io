@@ -168,3 +168,54 @@ h1 {
       margin-top: 60px;
     }
 }
+
+/* DATE CARD FROSTED GLASS STYLE */
+.date-card {
+    position: fixed;
+    top: 10px;
+    right: 10px; /* Moved from left to right */
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(3px); /* subtle frosted effect */
+    -webkit-backdrop-filter: blur(3px);
+    background: rgba(0, 0, 0, 0.2); /* transparent dark tint */
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    padding: 12px 16px;
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.date-day {
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    font-weight: 700;
+    color: #000000; /* Black for weekday (e.g., THURSDAY) */
+}
+
+.date-number {
+    font-size: 26px;
+    font-weight: 700;
+    color: #970202; /* Deep red for date number (e.g., 12) */
+}
+
+.date-month {
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 6px;
+    color: hwb(0 26% 73%); /* Dark grey for month (e.g., JUNE) */
+}
+
+
+.date-card:hover {
+    box-shadow:
+        0 4px 30px rgba(0, 0, 0, 0.2),  /* existing shadow */
+        0 0 20px rgba(255, 120, 40, 0.4); /* orange glow */
+    transition: box-shadow 0.3s ease-in-out;
+    cursor: default;
+}

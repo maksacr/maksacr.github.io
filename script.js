@@ -19,3 +19,13 @@ btn.addEventListener('click', () => {
     }
     isPlaying = !isPlaying;
 });
+
+// DATE LOGIC
+const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const monthNames = ["January", "February", "March", "April", "May", "June",
+                    "July", "August", "September", "October", "November", "December"];
+
+const today = new Date();
+document.getElementById("day").textContent = dayNames[today.getDay()];
+document.getElementById("dayNum").textContent = today.getDate();
+document.getElementById("month").textContent = monthNames[today.getMonth()];
