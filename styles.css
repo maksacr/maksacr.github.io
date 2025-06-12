@@ -121,6 +121,12 @@ h1 {
     100% { transform: translateX(-100%); }
 }
 
+@media (max-width: 768px) {
+    #switchTrackBtn {
+        display: none;
+    }
+}
+
 .music-player-fixed:hover {
     box-shadow: 0 0 20px rgba(250, 162, 62, 0.2);
 }
