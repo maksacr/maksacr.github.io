@@ -219,3 +219,10 @@ h1 {
     transition: box-shadow 0.3s ease-in-out;
     cursor: default;
 }
+
+@media (max-width: 768px) {
+  .date-card {
+    display: none;
+  }
+}
+
