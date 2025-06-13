@@ -176,59 +176,113 @@ h1 {
 }
 
 /* DATE CARD FROSTED GLASS STYLE */
-.date-card {
-    position: fixed;
-    top: 10px;
-    right: 10px; /* Moved from left to right */
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(3px); /* subtle frosted effect */
-    -webkit-backdrop-filter: blur(3px);
-    background: rgba(0, 0, 0, 0.2); /* transparent dark tint */
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-    padding: 12px 16px;
-    color: #ffffff;
-    font-family: 'Segoe UI', sans-serif;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-transform: uppercase;
-}
-
-.date-day {
-    font-size: 14px;
-    letter-spacing: 1px;
-    margin-bottom: 6px;
-    font-weight: 700;
-    color: #000000; /* Black for weekday (e.g., THURSDAY) */
-}
-
-.date-number {
-    font-size: 26px;
-    font-weight: 700;
-    color: #970202; /* Deep red for date number (e.g., 12) */
-}
-
-.date-month {
-    font-size: 20px;
-    font-weight: 700;
-    margin-top: 6px;
-    color: hwb(0 26% 73%); /* Dark grey for month (e.g., JUNE) */
+.date-card-glass {
+  width: 110px;    /* half of 220px */
+  height: 120px;   /* half of 330px */
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(0.3px);
+  -webkit-backdrop-filter: blur(0.3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
 }
 
 
-.date-card:hover {
-    box-shadow:
-        0 4px 30px rgba(0, 0, 0, 0.2),  /* existing shadow */
-        0 0 20px rgba(255, 120, 40, 0.4); /* orange glow */
-    transition: box-shadow 0.3s ease-in-out;
-    cursor: default;
+.date-card-wrapper {
+  position: fixed;
+  top: 20px;      /* closer to top */
+  right: 20px;    /* closer to right edge */
+  z-index: 1000;
 }
 
-@media (max-width: 768px) {
-  .date-card {
+@media (max-width: 600px) {
+  .date-card-wrapper {
     display: none;
   }
 }
 
+/* Frosted left strip */
+.frosted-strip {
+  width: 50px;
+  height: 80%;
+  transform: translateX(2px);
+  padding: 10px 8px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #000;
+  font-family: 'Segoe UI', sans-serif;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+/* Date info */
+.month {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: -10px;
+}
+
+.year {
+  font-size: 11px;
+  opacity: 0.5;
+  margin-bottom: 14px;
+}
+
+.details {
+  font-size: 9px;
+  line-height: 1.2;
+  opacity: 0.75;
+}
+
+.day-name {
+  font-size: 9px;
+  margin-bottom: 2px;
+}
+
+.day-full {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.label {
+  font-size: 9px;
+  margin-top: 16px;
+  opacity: 0.6;
+}
+
+.pink-circle {
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  background: radial-gradient(circle, rgba(255, 149, 110, 0.5), transparent 70%);
+  border-radius: 50%;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.date-card-glass:hover .pink-circle {
+  background: radial-gradient(circle, rgba(255, 160, 100, 0.8), transparent 70%);
+  width: 100px;
+  height: 100px;
+  transition: all 0.3s ease;
+}
+
+.date-card-glass:hover .frosted-strip {
+  background: rgba(255, 255, 255, 0.25); /* slightly more opaque */
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transition: all 0.3s ease;
+}

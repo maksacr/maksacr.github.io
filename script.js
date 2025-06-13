@@ -62,11 +62,8 @@ document.querySelector('.music-player-fixed').addEventListener('touchend', funct
 
 
 // DATE LOGIC
-const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const monthNames = ["January", "February", "March", "April", "May", "June",
-                    "July", "August", "September", "October", "November", "December"];
-
-const today = new Date();
-document.getElementById("day").textContent = dayNames[today.getDay()];
-document.getElementById("dayNum").textContent = today.getDate();
-document.getElementById("month").textContent = monthNames[today.getMonth()];
+const date = new Date();
+document.querySelector('.month').textContent = date.toLocaleString('en-US', { month: 'short' });
+document.querySelector('.year').textContent = date.getFullYear();
+document.querySelector('.day-name').textContent = date.toLocaleDateString('en-US', { weekday: 'long' });
+document.querySelector('.day-full').textContent = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
