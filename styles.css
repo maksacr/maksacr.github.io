@@ -28,44 +28,71 @@ h1 {
     flex-wrap: wrap;
 }
 
-.card {
-    background: rgba(34, 34, 34, 0.8);
-    padding: 20px;  
-    border-radius: 10px;
-    width: 300px;
-    text-align: center;
-    background-size: cover;
-    background-position: center;
-    color: white;
-    transition: transform 0.3s ease-in-out; /* Smooth transition */
+.social-card {
+  width: 300px;
+  height: 140px;
+  backdrop-filter: blur(0.3px) saturate(100%);
+  -webkit-backdrop-filter: blur(0.3px) saturate(100%);
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 25px 20px;
+  text-align: center;
+  color: #000000;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-    
-.card:hover {
-    transform: scale(1.05); /* Zoom effect on hover */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Soft shadow effect */
+.social-card:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
 }
 
-.btn {
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    background: rgba(255, 255, 255, 0.15); /* light translucent */
-    color: #ffffff;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 15px;
-    margin-top: 10px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    font-weight: bold;
+.social-card * {
+  position: relative;
+  z-index: 1;
 }
 
-.btn:hover {
-    background: rgba(255, 255, 255, 0.25); /* slightly brighter on hover */
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+.social-card h2 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
 }
+
+.social-card p {
+  font-size: 14px;
+  opacity: 0.75;
+  margin-bottom: 22px;
+  max-width: 200px;
+}
+
+.social-card .btn {
+  padding: 8px 16px;
+  background: rgba(70, 70, 70, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #1e1e1e;
+  font-size: 13px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.social-card .btn:hover {
+  background: rgba(247, 140, 101, 0.065);
+}
+
+@media (max-width: 600px) {
+  .grid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 
 
 
@@ -229,7 +256,6 @@ h1 {
 .month {
   font-size: 14px;
   font-weight: bold;
-  margin-top: -10px;
 }
 
 .year {
@@ -255,9 +281,21 @@ h1 {
 }
 
 .label {
-  font-size: 9px;
   margin-top: 16px;
-  opacity: 0.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-img {
+  width: 24px;  /* Adjust as needed */
+  height: 24px;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.logo-img:hover {
+  opacity: 1;
 }
 
 .pink-circle {
