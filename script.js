@@ -1,3 +1,8 @@
+if (navigator.userAgent.includes("Instagram")) {
+  document.body.classList.add("ig-view");
+}
+
+
 document.querySelectorAll('.btn').forEach(button => {
     button.addEventListener('click', function(event) {
         event.preventDefault();
