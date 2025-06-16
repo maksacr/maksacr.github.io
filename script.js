@@ -1,5 +1,7 @@
-if (navigator.userAgent.includes("Instagram")) {
-  document.body.classList.add("ig-view");
+const ua = navigator.userAgent || navigator.vendor || window.opera;
+
+if (ua.includes("Instagram")) {
+  document.body.classList.add("in-instagram");
 }
 
 

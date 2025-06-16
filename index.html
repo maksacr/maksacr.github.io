@@ -90,5 +90,13 @@
     <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
     </div>
 <script src="script.js"></script>
+
+<script>
+  const ua = navigator.userAgent || navigator.vendor || window.opera;
+  if (ua.includes("Instagram")) {
+    document.body.classList.add("in-instagram");
+  }
+</script>
+
 </body>
 </html>
