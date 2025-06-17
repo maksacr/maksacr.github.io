@@ -50,6 +50,17 @@ h1 {
   align-items: center;
 }
 
+@media (max-width: 600px) {
+  .social-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: none;
+  }
+   .social-card.fake-hover {
+    background-color: rgba(255, 255, 255, 0.12); /* fake blur look */
+  }
+}
+
 .social-card:hover {
   background-color: rgba(255, 255, 255, 0.15);
   transform: translateY(-6px);
@@ -96,16 +107,6 @@ h1 {
   }
 }
 
-.in-instagram .social-card {
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  box-shadow: none !important;
-  background-color: rgba(255, 255, 255, 0.05) !important;
-}
-/*temp*/
-.in-instagram body {
-  background: red !important;
-}
 
 .music-player-fixed {
     position: fixed;

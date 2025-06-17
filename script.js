@@ -1,10 +1,3 @@
-const ua = navigator.userAgent || navigator.vendor || window.opera;
-
-if (ua.includes("Instagram")) {
-  document.body.classList.add("in-instagram");
-}
-
-
 document.querySelectorAll('.btn').forEach(button => {
     button.addEventListener('click', function(event) {
         event.preventDefault();
@@ -74,3 +67,16 @@ document.querySelector('.month').textContent = date.toLocaleString('en-US', { mo
 document.querySelector('.year').textContent = date.getFullYear();
 document.querySelector('.day-name').textContent = date.toLocaleDateString('en-US', { weekday: 'long' });
 document.querySelector('.day-full').textContent = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+
+// Fake blur on tap for mobile
+document.querySelectorAll('.social-card').forEach(card => {
+  card.addEventListener('touchstart', () => {
+    card.classList.add('fake-hover');
+
+    // Remove after short time (like hover)
+    setTimeout(() => {
+      card.classList.remove('fake-hover');
+    }, 300);
+  });
+});
