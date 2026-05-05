@@ -1,96 +1,556 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAKSACR CORNER</title>
-    <link rel="stylesheet" href="styles.css">
-    <meta name="p:domain_verify" content="7e27d997aa6eda3b672658fc92b8a459"/>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maksacr</title>
+  <meta name="description" content="All my stuff, one place — links, ebook, gallery, and more.">
+  <meta property="og:title" content="Maksacr">
+  <meta property="og:description" content="All my stuff, one place — links, ebook, gallery, and more.">
+  <meta property="og:image" content="images/og-preview.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Maksacr">
+  <meta name="twitter:description" content="All my stuff, one place.">
+  <meta name="twitter:image" content="images/og-preview.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.simpleicons.org/simpleicons/anilist">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- NOW PLAYING SECTION -->
-<div class="music-player-fixed">
-    <button id="playPauseBtn"><i class="fas fa-play"></i></button>
-    <button id="switchTrackBtn"><i class="fas fa-retweet"></i></button> <!-- New button -->
-    <span class="now-playing-label">PLAYING:</span>
-    <div class="track-scroll">
-        <span id="trackName">XXXX - Lull</span>
-    </div>
-    <audio id="audioPlayer" src="music/Lull - WithoutDrums.mp3"></audio>
-</div>
 
-<!-- DATE CARD: TOP-RIGHT -->
-<div class="date-card-wrapper">
-  <div class="date-card-glass">
-    <div class="pink-circle"></div>
-    <div class="frosted-strip">
-      <div class="month">Jun</div>
-      <div class="year">2025</div>
-      <div class="details">
-        <div class="day-name">Friday</div>
-        <div class="day-full">Jun 13</div>
-        <div class="label">
-          <img src="images/logo.svg" alt="Logo" class="logo-img" />
+  <!-- LOADING SCREEN -->
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <img src="images/logo.png" alt="Maksacr" class="loader-logo">
+      <div class="loader-bar"><div class="loader-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- NOISE OVERLAY -->
+  <div class="noise"></div>
+
+  <!-- AMBIENT BLOBS -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <!-- MUSIC PLAYER -->
+  <div class="music-player-fixed" id="musicPlayer">
+    <button id="playPauseBtn" aria-label="Play/Pause"><i class="fas fa-play"></i></button>
+    <button id="switchTrackBtn" aria-label="Next track"><i class="fas fa-forward-step"></i></button>
+    <div class="player-info">
+      <span class="now-playing-label">NOW PLAYING</span>
+      <div class="track-scroll">
+        <span id="trackName">XXXX — Lull</span>
+      </div>
+    </div>
+    <div class="visualizer">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <button id="trackListBtn" aria-label="Track list"><i class="fas fa-chevron-down"></i></button>
+    <div class="track-dropdown" id="trackDropdown"></div>
+    <audio id="audioPlayer" src="music/Lull - WithoutDrums.mp3"></audio>
+  </div>
+
+  <!-- DATE CARD -->
+  <div class="date-card-wrapper">
+    <button class="date-card" id="dateCardBtn" aria-label="Open clock">
+      <div class="date-glow"></div>
+      <div class="date-month" id="dateMonth">Jun</div>
+      <div class="date-day" id="dateDay">13</div>
+      <div class="date-divider"></div>
+      <div class="date-weekday" id="dateWeekday">Friday</div>
+      <div class="date-year" id="dateYear">2025</div>
+      <img src="images/logo.svg" alt="Logo" class="date-logo" />
+    </button>
+    <button class="about-btn" id="aboutBtn">WHO AM I?</button>
+  </div>
+
+  <!-- BIO MODAL -->
+  <div class="bio-overlay" id="bioOverlay">
+    <div class="bio-window" id="bioWindow">
+      <button class="bio-close" id="bioClose"><i class="fas fa-xmark"></i></button>
+      <h2 class="bio-name">MAKSACR</h2>
+      <div class="bio-divider"></div>
+      <p class="bio-text">
+        Hey — I'm Maksacr. A creator, writer, and digital explorer. I make things on the internet: from browser themes to ebooks, from Pinterest boards to weird little corners of the web like this one.
+      </p>
+      <p class="bio-text">
+        This space is where everything lives. Pull up a chair.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- CLOCK MODAL -->
+  <div class="clock-overlay" id="clockOverlay">
+    <div class="clock-window">
+      <button class="clock-close" id="clockClose"><i class="fas fa-xmark"></i></button>
+      <div class="clock-face-wrap">
+        <svg class="clock-svg" id="clockSvg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <!-- squircle background -->
+          <rect x="4" y="4" width="192" height="192" rx="48" ry="48" fill="rgba(14,13,12,0.0)" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+          <!-- tick marks -->
+          <g id="clockTicks"></g>
+          <!-- hour hand -->
+          <line id="hourHand" x1="100" y1="100" x2="100" y2="52" stroke="rgba(232,227,220,0.9)" stroke-width="4" stroke-linecap="round"/>
+          <!-- minute hand -->
+          <line id="minuteHand" x1="100" y1="100" x2="100" y2="36" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- center dot -->
+          <circle cx="100" cy="100" r="4" fill="var(--accent)"/>
+        </svg>
+      </div>
+      <div class="clock-info">
+        <div class="clock-date-row">
+          <span class="clock-weekday" id="clockWeekday">MON</span>
+          <span class="clock-sep">·</span>
+          <span class="clock-day" id="clockDay">17</span>
+          <span class="clock-sep">·</span>
+          <span class="clock-month" id="clockMonth">MAR</span>
+        </div>
+        <div class="clock-year" id="clockYear">2026</div>
+        <img src="images/logo.svg" alt="Logo" class="clock-logo" />
+      </div>
+    </div>
+  </div>
+  <!-- MAIN CONTENT -->
+  <main class="container">
+    <header class="site-header">
+      <p class="site-eyebrow">✦ welcome to</p>
+      <h1 class="site-title">MAKSACR<br><span class="title-outline">CORNER</span></h1>
+      <p class="site-subtitle">All my stuff, one place.</p>
+    </header>
+
+    <div class="grid">
+
+      <a href="https://in.pinterest.com/maksacrpin" target="_blank" class="card" data-index="0">
+        <div class="card-icon"><i class="fab fa-pinterest"></i></div>
+        <div class="card-body">
+          <h2>Pinterest</h2>
+          <p>Explore pins and get inspired</p>
+        </div>
+        <span class="card-arrow"><i class="fas fa-arrow-up-right"></i></span>
+        <div class="card-tag">BOARDS</div>
+      </a>
+
+      <a href="https://www.instagram.com/maksacr.esp/" target="_blank" class="card" data-index="1">
+        <div class="card-icon"><i class="fab fa-instagram"></i></div>
+        <div class="card-body">
+          <h2>Instagram</h2>
+          <p>Follow my journey through pictures</p>
+        </div>
+        <span class="card-arrow"><i class="fas fa-arrow-up-right"></i></span>
+        <div class="card-tag">PHOTOS</div>
+      </a>
+
+      <a href="https://a.co/d/gGWADBi" target="_blank" class="card" data-index="2">
+        <div class="card-icon"><i class="fas fa-book-open"></i></div>
+        <div class="card-body">
+          <h2>My eBook</h2>
+          <p>Published on Amazon — read it now</p>
+        </div>
+        <span class="card-arrow"><i class="fas fa-arrow-up-right"></i></span>
+        <div class="card-tag">AMAZON</div>
+      </a>
+
+      <a href="https://linktr.ee/maksacr" target="_blank" class="card" data-index="3">
+        <div class="card-icon"><i class="fas fa-link"></i></div>
+        <div class="card-body">
+          <h2>Linktree</h2>
+          <p>Find me everywhere in one tap</p>
+        </div>
+        <span class="card-arrow"><i class="fas fa-arrow-up-right"></i></span>
+        <div class="card-tag">LINKS</div>
+      </a>
+
+      <a href="https://store.gx.me/studios/6aeef866-5c7c-4e9a-9191-192f44ea6599/" target="_blank" class="card" data-index="4">
+        <div class="card-icon"><i class="fas fa-palette"></i></div>
+        <div class="card-body">
+          <h2>GX Studio</h2>
+          <p>Cool browser themes & vibes</p>
+        </div>
+        <span class="card-arrow"><i class="fas fa-arrow-up-right"></i></span>
+        <div class="card-tag">THEMES</div>
+      </a>
+
+      <a href="https://anilist.co/user/maks4/" target="_blank" class="card" data-index="5">
+        <div class="card-icon">
+          <img src="https://cdn.simpleicons.org/anilist/f5824a" alt="Anilist" style="width:22px;height:22px;">
+        </div>
+        <div class="card-body">
+          <h2>AniList</h2>
+          <p>Watch/Read with me</p>
+        </div>
+        <span class="card-arrow"><i class="fas fa-arrow-up-right"></i></span>
+        <div class="card-tag">List</div>
+      </a>
+
+      <a href="https://github.com/maksacr" target="_blank" class="card" data-index="5">
+        <div class="card-icon"><i class="fab fa-github"></i></div>
+        <div class="card-body">
+          <h2>GITHUB</h2>
+          <p>useless Repos</p>
+        </div>
+        <span class="card-arrow"><i class="fas fa-arrow-up-right"></i></span>
+        <div class="card-tag">REPOSITORY</div>
+      </a>
+
+    </div>
+  </main>
+
+  <!-- ANILIST VERTICAL WIDGET -->
+  <div class="al-widget" id="alWidget">
+    <div class="al-avatar-wrap">
+      <img class="al-avatar" id="alAvatar" src="" alt="maksacr">
+      <div class="al-avatar-glow"></div>
+    </div>
+    <div class="al-divider-h"></div>
+    <div class="al-section" id="alWatchSection">
+      <span class="al-section-label">WATCHING</span>
+      <div class="al-items" id="alWatchItems">
+        <div class="al-loading"><i class="fas fa-circle-notch fa-spin"></i></div>
+      </div>
+    </div>
+    <div class="al-divider-h"></div>
+    <div class="al-section" id="alReadSection">
+      <span class="al-section-label">READING</span>
+      <div class="al-items" id="alReadItems">
+        <div class="al-loading"><i class="fas fa-circle-notch fa-spin"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLAY CORNER BUTTON -->
+  <button class="play-corner-btn" id="playCornerBtn" aria-label="Play">
+    <i class="fas fa-dice"></i>
+    <span>PLAY</span>
+  </button>
+
+  <!-- PLAY MENU MODAL -->
+  <div class="play-overlay" id="playOverlay">
+    <div class="play-window">
+      <button class="play-close" id="playClose"><i class="fas fa-xmark"></i></button>
+      <p class="play-eyebrow">✦ bored?</p>
+      <h2 class="play-title">PLAY CORNER</h2>
+      <div class="play-divider"></div>
+      <div class="play-options">
+        <button class="play-option" id="openSnake">
+          <span class="play-option-icon"><i class="fas fa-gamepad"></i></span>
+          <span class="play-option-body">
+            <span class="play-option-name">Snake</span>
+            <span class="play-option-desc">Classic. Don't die.</span>
+          </span>
+          <i class="fas fa-arrow-right play-option-arrow"></i>
+        </button>
+        <button class="play-option" id="openDraw">
+          <span class="play-option-icon"><i class="fas fa-pen-nib"></i></span>
+          <span class="play-option-body">
+            <span class="play-option-name">Draw</span>
+            <span class="play-option-desc">Make something.</span>
+          </span>
+          <i class="fas fa-arrow-right play-option-arrow"></i>
+        </button>
+        <button class="play-option" id="openErr">
+          <span class="play-option-icon"><i class="fas fa-message"></i></span>
+          <span class="play-option-body">
+            <span class="play-option-name">Chat</span>
+            <span class="play-option-desc">Say hi, I'm around.</span>
+          </span>
+          <i class="fas fa-arrow-right play-option-arrow"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SNAKE MODAL -->
+  <div class="mini-overlay" id="snakeOverlay">
+    <div class="mini-window">
+      <div class="mini-header">
+        <span class="mini-title">SNAKE</span>
+        <div class="mini-header-right">
+          <span class="snake-score-label">SCORE <span id="snakeScore">0</span></span>
+          <button class="mini-back" id="snakeBack"><i class="fas fa-arrow-left"></i></button>
+          <button class="mini-close-btn" id="snakeClose"><i class="fas fa-xmark"></i></button>
+        </div>
+      </div>
+      <div class="snake-wrap">
+        <canvas id="snakeCanvas"></canvas>
+        <div class="snake-overlay-msg" id="snakeMsg">
+          <span class="snake-msg-title" id="snakeMsgTitle">SNAKE</span>
+          <span class="snake-msg-sub" id="snakeMsgSub">TAP TO START</span>
+        </div>
+      </div>
+      <div class="snake-dpad" id="dpad">
+        <button class="dpad-btn dpad-up"    data-dir="UP"><i class="fas fa-chevron-up"></i></button>
+        <button class="dpad-btn dpad-left"  data-dir="LEFT"><i class="fas fa-chevron-left"></i></button>
+        <button class="dpad-btn dpad-right" data-dir="RIGHT"><i class="fas fa-chevron-right"></i></button>
+        <button class="dpad-btn dpad-down"  data-dir="DOWN"><i class="fas fa-chevron-down"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DRAW MODAL -->
+  <div class="mini-overlay" id="drawOverlay">
+    <div class="mini-window">
+      <div class="mini-header">
+        <span class="mini-title">DRAW</span>
+        <div class="mini-header-right">
+          <div class="draw-tools">
+            <input type="color" id="drawColor" value="#f5824a" title="Color">
+            <input type="range" id="drawSize" min="2" max="32" value="6" title="Size">
+            <button class="draw-tool-btn" id="drawEraser" title="Eraser"><i class="fas fa-eraser"></i></button>
+            <button class="draw-tool-btn" id="drawClear" title="Clear"><i class="fas fa-trash"></i></button>
+          </div>
+          <button class="mini-back" id="drawBack"><i class="fas fa-arrow-left"></i></button>
+          <button class="mini-close-btn" id="drawClose"><i class="fas fa-xmark"></i></button>
+        </div>
+      </div>
+      <canvas id="drawCanvas"></canvas>
+    </div>
+  </div>
+
+  <!-- ERROR 404 MODAL -->
+  <div class="mini-overlay" id="errOverlay">
+    <div class="mini-window err-window">
+      <div class="mini-header">
+        <span class="mini-title">SYSTEM</span>
+        <div class="mini-header-right">
+          <button class="mini-back" id="errBack"><i class="fas fa-arrow-left"></i></button>
+          <button class="mini-close-btn" id="errClose"><i class="fas fa-xmark"></i></button>
+        </div>
+      </div>
+      <div class="err-content">
+        <p class="err-subtitle">Lost? Me too. Let's figure it out together.</p>
+        <div class="err-body">
+          <div class="err-text-block">
+            <div class="err-code">
+              <span class="err-word" id="errWord">ERROR</span>
+              <span class="err-num">404</span>
+            </div>
+            <p class="err-desc" id="errDesc">The page you seek has ghosted you....</p>
+          </div>
+          <div class="err-camera">
+            <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="28" width="100" height="64" rx="8" stroke="white" stroke-width="3"/>
+              <circle cx="60" cy="60" r="18" stroke="white" stroke-width="3"/>
+              <circle cx="60" cy="60" r="8" stroke="white" stroke-width="2"/>
+              <rect x="38" y="18" width="24" height="14" rx="4" stroke="white" stroke-width="3"/>
+              <rect x="80" y="34" width="14" height="10" rx="2" stroke="white" stroke-width="2"/>
+              <line x1="8" y1="8" x2="112" y2="92" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <button class="err-dismiss" id="errDismiss">Let's pretend this never happened &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESSENTIAL BUTTON -->
+  <div class="ess-wrapper" id="essWrapper">
+    <div class="ess-menu" id="essMenu">
+      <button class="ess-item" id="essGallery" title="Photography">
+        <i class="fas fa-camera"></i>
+      </button>
+      <button class="ess-item" id="essAboutMe" title="About">
+        <i class="fas fa-sparkles"></i>
+      </button>
+      <button class="ess-item" id="essLife" title="Life in Weeks">
+        <i class="fas fa-circle-dot"></i>
+      </button>
+    </div>
+    <button class="ess-main-btn" id="essMainBtn" aria-label="More">
+      <i class="fas fa-plus" id="essIcon"></i>
+    </button>
+  </div>
+
+  <!-- GALLERY MODAL -->
+  <div class="modal-overlay" id="galleryOverlay">
+    <div class="modal-window gallery-window">
+      <div class="modal-header">
+        <div>
+          <p class="modal-eyebrow">✦ through my lens</p>
+          <h2 class="modal-title">GALLERY</h2>
+        </div>
+        <button class="modal-close" id="galleryClose"><i class="fas fa-xmark"></i></button>
+      </div>
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Photos added via JS from images/gallery/ — add src paths in script.js -->
+        <div class="gallery-empty">
+          <i class="fas fa-camera"></i>
+          <p>Photos coming soon.<br><span>Add paths to the <code>GALLERY_PHOTOS</code> array in script.js</span></p>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- MAIN HEADING -->
-    <div class="container">
-      <div class="heading-glass">
-        <h1>
-          <span class="welcome-grey">WELCOME TO </span>
-          <span class="maksacr-black">MAKSACR CORNER</span>
-        </h1>
-      </div>
-<!-- HTML: Liquid Glass Social Cards with Icons -->
-    
-    <div class="grid">
-      <div class="social-card">
-        <i class="fab fa-pinterest"></i>
-        <h2>PINTEREST</h2>
-        <p>Explore my Pins and get inspired!</p>
-        <a href="https://in.pinterest.com/maksacrpin" class="btn">Check it Out</a> 
-      </div>
+  <!-- LIGHTBOX -->
+  <div class="lightbox-overlay" id="lightboxOverlay">
+    <button class="lightbox-nav lightbox-prev" id="lbPrev"><i class="fas fa-chevron-left"></i></button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <button class="lightbox-nav lightbox-next" id="lbNext"><i class="fas fa-chevron-right"></i></button>
+    <button class="lightbox-close" id="lightboxClose"><i class="fas fa-xmark"></i></button>
+  </div>
 
-      <div class="social-card">
-        <i class="fab fa-instagram"></i>
-        <h2>INSTAGRAM</h2>
-        <p>Follow my journey through pictures!</p>
-        <a href="https://www.instagram.com/maksacr.esp/" class="btn">Follow Me</a>
+  <!-- ABOUT-ME MODAL (Skills / Hobbies / Favourites) -->
+  <div class="modal-overlay" id="aboutMeOverlay">
+    <div class="modal-window aboutme-window">
+      <div class="modal-header">
+        <div>
+          <p class="modal-eyebrow">✦ get to know me</p>
+          <h2 class="modal-title">MORE ABOUT ME</h2>
+        </div>
+        <button class="modal-close" id="aboutMeClose"><i class="fas fa-xmark"></i></button>
       </div>
-
-      <div class="social-card">
-        <i class="fas fa-book"></i>
-        <h2>MY EBOOK</h2>
-        <p>Check out my Amazon-published ebook.</p>
-        <a href="https://a.co/d/gGWADBi" class="btn">Read Now</a>  
-      </div>
-
-      <div class="social-card">
-        <i class="fas fa-link"></i>
-        <h2>LINKTR</h2>
-        <p>Find me everywhere in one tap.</p>
-        <a href="https://linktr.ee/maksacr" class="btn">Tap In</a>
-      </div>
-
-      <div class="social-card">
-        <i class="fas fa-globe"></i>
-        <h2>GX STUDIO</h2>
-        <p>Cool themes.</p>
-        <a href="https://store.gx.me/studios/6aeef866-5c7c-4e9a-9191-192f44ea6599/" class="btn">Take a Peek</a>
+      <div class="aboutme-options">
+        <button class="aboutme-option" id="openSkills">
+          <span class="aboutme-option-icon"><i class="fas fa-code"></i></span>
+          <span class="aboutme-option-body">
+            <span class="aboutme-option-name">Skills</span>
+            <span class="aboutme-option-desc">What I actually know.</span>
+          </span>
+          <i class="fas fa-arrow-right aboutme-arrow"></i>
+        </button>
+        <button class="aboutme-option" id="openHobbies">
+          <span class="aboutme-option-icon"><i class="fas fa-heart"></i></span>
+          <span class="aboutme-option-body">
+            <span class="aboutme-option-name">Hobbies</span>
+            <span class="aboutme-option-desc">What I do for fun.</span>
+          </span>
+          <i class="fas fa-arrow-right aboutme-arrow"></i>
+        </button>
+        <button class="aboutme-option" id="openFavs">
+          <span class="aboutme-option-icon"><i class="fas fa-star"></i></span>
+          <span class="aboutme-option-body">
+            <span class="aboutme-option-name">Favourites</span>
+            <span class="aboutme-option-desc">Things I love.</span>
+          </span>
+          <i class="fas fa-arrow-right aboutme-arrow"></i>
+        </button>
       </div>
     </div>
+  </div>
 
-<!-- Font Awesome (for icons) -->
-    <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
+  <!-- SKILLS SUBMODAL -->
+  <div class="modal-overlay" id="skillsOverlay">
+    <div class="modal-window sub-window">
+      <div class="modal-header">
+        <div><p class="modal-eyebrow">✦ what i know</p><h2 class="modal-title">SKILLS</h2></div>
+        <div style="display:flex;gap:8px">
+          <button class="modal-close" id="skillsBack"><i class="fas fa-arrow-left"></i></button>
+          <button class="modal-close" id="skillsClose"><i class="fas fa-xmark"></i></button>
+        </div>
+      </div>
+      <div class="tags-grid">
+        <span class="info-tag">Programming</span>
+        <span class="info-tag">Content Creation</span>
+        <span class="info-tag">Photography</span>
+        <span class="info-tag">Web Design</span>
+        <span class="info-tag">Digital Art</span>
+        <span class="info-tag">Storytelling</span>
+        <span class="info-tag">Brand Aesthetics</span>
+        <span class="info-tag">Publishing</span>
+      </div>
     </div>
-<script src="script.js"></script>
+  </div>
+
+  <!-- HOBBIES SUBMODAL -->
+  <div class="modal-overlay" id="hobbiesOverlay">
+    <div class="modal-window sub-window">
+      <div class="modal-header">
+        <div><p class="modal-eyebrow">✦ what i do</p><h2 class="modal-title">HOBBIES</h2></div>
+        <div style="display:flex;gap:8px">
+          <button class="modal-close" id="hobbiesBack"><i class="fas fa-arrow-left"></i></button>
+          <button class="modal-close" id="hobbiesClose"><i class="fas fa-xmark"></i></button>
+        </div>
+      </div>
+      <div class="tags-grid">
+        <span class="info-tag">Photography</span>
+        <span class="info-tag">Reading</span>
+        <span class="info-tag">Music</span>
+        <span class="info-tag">Travelling</span>
+        <span class="info-tag">Writing</span>
+        <span class="info-tag">Urbex</span>
+        <span class="info-tag">Building Websites</span>
+        <span class="info-tag">Pirating</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAVOURITES SUBMODAL -->
+  <div class="modal-overlay" id="favsOverlay">
+    <div class="modal-window sub-window">
+      <div class="modal-header">
+        <div><p class="modal-eyebrow">✦ what i love</p><h2 class="modal-title">FAVOURITES</h2></div>
+        <div style="display:flex;gap:8px">
+          <button class="modal-close" id="favsBack"><i class="fas fa-arrow-left"></i></button>
+          <button class="modal-close" id="favsClose"><i class="fas fa-xmark"></i></button>
+        </div>
+      </div>
+      <div class="tags-grid">
+        <span class="info-tag">Liminal Spaces</span>
+        <span class="info-tag">Interstellar</span>
+        <span class="info-tag">Rainy Days</span>
+        <span class="info-tag">Dark Coffee</span>
+        <span class="info-tag">Bookshops</span>
+        <span class="info-tag">Late Nights</span>
+        <span class="info-tag">Analog Cameras</span>
+        <span class="info-tag">Vintage Fonts</span>
+      </div>
+    </div>
+  </div>
 
 
+  <!-- LIFE DOTS MODAL -->
+  <div class="modal-overlay" id="lifeOverlay">
+    <div class="modal-window life-window">
+      <div class="modal-header">
+        <div>
+          <p class="modal-eyebrow">✦ time is passing</p>
+          <h2 class="modal-title">LIFE IN WEEKS</h2>
+        </div>
+        <button class="modal-close" id="lifeClose"><i class="fas fa-xmark"></i></button>
+      </div>
+      <div class="life-content">
+        <p class="life-stat" id="lifeStat"></p>
+        <div class="life-grid" id="lifeGrid"></div>
+        <p class="life-legend"><span class="life-dot-sample lived"></span> lived &nbsp;&nbsp; <span class="life-dot-sample current" style="background:var(--accent2);box-shadow:0 0 6px rgba(240,201,122,0.8);"></span> this week</p>
+      </div>
+    </div>
+  </div>
+  <!-- SCROLL TO TOP -->
+  <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- VISIT COUNTER -->
+  <div class="visit-counter" id="visitCounter">
+    <i class="fas fa-eye"></i>
+    <span id="visitCount">—</span>
+  </div>
+
+  <!-- NOW WATCHING MODAL -->
+  <div class="modal-overlay" id="nowOverlay">
+    <div class="modal-window now-window">
+      <div class="modal-header">
+        <div>
+          <p class="modal-eyebrow">✦ currently into</p>
+          <h2 class="modal-title">NOW WATCHING</h2>
+        </div>
+        <button class="modal-close" id="nowClose"><i class="fas fa-xmark"></i></button>
+      </div>
+      <div class="now-content" id="nowContent">
+        <div class="now-loading"><i class="fas fa-circle-notch fa-spin"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
+
+

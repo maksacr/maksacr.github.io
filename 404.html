@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maksacr — 404</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0e0d0c; --text: #e8e3dc; --muted: rgba(232,227,220,0.45);
+      --accent: #f5824a; --border: rgba(255,255,255,0.09);
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+    }
+    body {
+      background: var(--bg); color: var(--text); font-family: var(--font-body);
+      min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background: radial-gradient(ellipse at 20% 20%, rgba(245,130,74,0.12) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 80%, rgba(200,112,245,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .noise {
+      position: fixed; inset: 0; z-index: 1; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      background-size: 200px; opacity: 0.5;
+    }
+    .wrap {
+      position: relative; z-index: 2; text-align: center;
+      padding: 40px 24px; display: flex; flex-direction: column; align-items: center; gap: 28px;
+    }
+    .top-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 3px; color: var(--muted); }
+    .camera { width: 100px; opacity: 0.6; animation: camFloat 3s ease-in-out infinite alternate; }
+    @keyframes camFloat { from { transform: translateY(0); } to { transform: translateY(-10px); } }
+    .err-code { display: flex; flex-direction: column; line-height: 1; }
+    .err-word {
+      font-family: var(--font-display); font-size: clamp(48px, 12vw, 80px);
+      letter-spacing: 4px; color: var(--accent); animation: glitch 4s infinite;
+    }
+    .err-num {
+      font-family: var(--font-display); font-size: clamp(72px, 18vw, 120px);
+      letter-spacing: 4px; color: var(--accent); animation: glitch 4s infinite 0.2s;
+    }
+    @keyframes glitch {
+      0%,88%,100% { text-shadow: none; transform: none; }
+      90% { text-shadow: -3px 0 #f0c97a, 3px 0 #c870f5; transform: translateX(-2px); }
+      92% { text-shadow: 3px 0 #f0c97a, -3px 0 #c870f5; transform: translateX(3px); }
+      94% { text-shadow: none; transform: none; }
+    }
+    .err-desc { font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.5px; color: var(--muted); line-height: 1.7; }
+    .home-btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 12px 28px;
+      background: rgba(245,130,74,0.08); border: 1px solid rgba(245,130,74,0.3);
+      border-radius: 999px; font-family: var(--font-mono); font-size: 10px;
+      letter-spacing: 2.5px; color: var(--accent); text-decoration: none;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    .home-btn:hover { background: rgba(245,130,74,0.15); box-shadow: 0 4px 24px rgba(245,130,74,0.2); }
+    .sig { font-family: var(--font-mono); font-size: 8px; letter-spacing: 2px; color: var(--muted); opacity: 0.4; }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="wrap">
+    <p class="top-label">Lost? Me too. Let's figure it out together.</p>
+    <svg class="camera" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="28" width="100" height="64" rx="8" stroke="white" stroke-width="3"/>
+      <circle cx="60" cy="60" r="18" stroke="white" stroke-width="3"/>
+      <circle cx="60" cy="60" r="8" stroke="white" stroke-width="2"/>
+      <rect x="38" y="18" width="24" height="14" rx="4" stroke="white" stroke-width="3"/>
+      <rect x="80" y="34" width="14" height="10" rx="2" stroke="white" stroke-width="2"/>
+      <line x1="8" y1="8" x2="112" y2="92" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <div class="err-code">
+      <span class="err-word">ERROR</span>
+      <span class="err-num">404</span>
+    </div>
+    <p class="err-desc">The page you seek has ghosted you....</p>
+    <a href="index.html" class="home-btn"><i class="fas fa-arrow-left"></i> TAKE ME HOME</a>
+    <p class="sig">MAKSACR CORNER</p>
+  </div>
+</body>
+</html>
