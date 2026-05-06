@@ -123,7 +123,7 @@ galleryOverlay.addEventListener('click', e => { if (e.target === galleryOverlay)
 const tracks = [
   { name: "XXXX — Lull", src: "music/Lull - WithoutDrums.mp3" },
   { name: "YYYY — Loop", src: "music/Loop - SoftCore.mp3" },
-  { name: "FFFF — Flaw", src: "music/Flaw - lullaby.mp3" }
+  { name: "FFFF — Flaw", src: "music/flaw - lullaby.mp3" }
 ];
 
 let currentTrack = 0;
